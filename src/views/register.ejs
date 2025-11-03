@@ -1,0 +1,21 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <h3 class="text-center mb-4">Đăng ký</h3>
+      <form method="POST" action="/register">
+        <div class="mb-3">
+          <label for="username" class="form-label">Tên đăng nhập</label>
+          <input type="text" class="form-control" autocomplete="username" name="username" required />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Mật khẩu</label>
+          <input type="password" class="form-control" autocomplete="new-password" name="password" required />
+        </div>
+        <button class="btn btn-success w-100" type="submit">Đăng ký</button>
+      </form>
+      <div class="text-center mt-3">
+        <a href="/login">Đã có tài khoản? Đăng nhập</a>
+      </div>
+    </div>
+  </div>
+</div>

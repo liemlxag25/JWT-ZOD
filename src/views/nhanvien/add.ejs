@@ -1,0 +1,35 @@
+<h3 class="mb-4">Thêm nhân viên mới</h3>
+<% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+  <div class="alert alert-danger">
+    <strong>⚠️ Vui lòng kiểm tra lại:</strong>
+    <ul class="mt-2 mb-0">
+      <% errors.forEach(function(err) { %>
+        <li><%= err %></li>
+      <% }) %>
+    </ul>
+  </div>
+<% } %>
+<form method="POST" action="/nhanvien/add">
+  <div class="mb-3">
+    <label class="form-label">Họ tên</label>
+    <input type="text" name="ten" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Tuổi</label>
+    <input type="number" name="tuoi" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Chức vụ</label>
+    <input type="text" name="chucvu" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Lương (VNĐ)</label>
+    <input type="number" name="luong" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Địa chỉ</label>
+    <input type="text" name="diachi" class="form-control" required>
+  </div>
+  <button class="btn btn-success">Thêm</button>
+  <a href="/nhanvien" class="btn btn-secondary">Hủy</a>
+</form>

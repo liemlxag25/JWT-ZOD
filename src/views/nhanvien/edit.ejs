@@ -1,0 +1,35 @@
+<h3 class="mb-4">Chỉnh sửa thông tin nhân viên</h3>
+<% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+  <div class="alert alert-danger">
+    <strong>⚠️ Vui lòng kiểm tra lại:</strong>
+    <ul class="mt-2 mb-0">
+      <% errors.forEach(function(err) { %>
+        <li><%= err %></li>
+      <% }) %>
+    </ul>
+  </div>
+<% } %>
+<form method="POST" action="/nhanvien/edit/<%= nhanvien._id %>">
+  <div class="mb-3">
+    <label class="form-label">Họ tên</label>
+    <input type="text" name="ten" class="form-control" value="<%= nhanvien.ten %>" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Tuổi</label>
+    <input type="number" name="tuoi" class="form-control" value="<%= nhanvien.tuoi %>" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Chức vụ</label>
+    <input type="text" name="chucvu" class="form-control" value="<%= nhanvien.chucvu %>" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Lương (VNĐ)</label>
+    <input type="number" name="luong" class="form-control" value="<%= nhanvien.luong %>" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Địa chỉ</label>
+    <input type="text" name="diachi" class="form-control" value="<%= nhanvien.diachi %>" required>
+  </div>
+  <button class="btn btn-primary">Lưu thay đổi</button>
+  <a href="/nhanvien" class="btn btn-secondary">Hủy</a>
+</form>

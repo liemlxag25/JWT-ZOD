@@ -1,0 +1,9 @@
+<% layout('layout', { title: 'Hồ sơ cá nhân' }) %>
+
+<div class="container mt-5" style="max-width: 600px;">
+  <h3>Thông tin tài khoản</h3>
+  <ul class="list-group">
+    <li class="list-group-item"><strong>ID:</strong> <%= user.id %></li>
+    <li class="list-group-item"><strong>Tên đăng nhập:</strong> <%= user.username %></li>
+  </ul>
+</div>
