@@ -3,20 +3,16 @@ import app from "./app";
 import dotenv from "dotenv";
 import connectDB from "./configs/database.config";
 import config from "./configs/config";
-dotenv.config();
 
-const port = config.app.port || 3000;
-const hostname = config.app.hostname || "localhost";
-
-// Kết nối DB
+// connect Database
 connectDB();
 
-// Chạy server
-const server = app.listen(port, () => {
-  console.log(`Server chạy tại http://${hostname}:${port}`);
+//server running
+const server = app.listen(config.app.port, () => {
+  console.log(`Server running at http://${config.app.hostname}:${config.app.port}`);
 });
 
-// Graceful shutdown (tùy chọn)
+// Graceful shutdown 
 process.on("SIGTERM", () => {
   console.log("SIGTERM received: closing server...");
   server.close(() => {

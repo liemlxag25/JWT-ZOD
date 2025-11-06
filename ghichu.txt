@@ -1,0 +1,14 @@
+Sai lầm khi viết code:
+    1 dùng any và global variable(biến toàn cục) 
+    2 không tách biệt rõ ràng các phần như controllers,middlewares,services
+    3 thường xuyên dùng try-catch
+    4 chưa hiểu về middlewares và không biết tận dụng nó
+ 
+ khác phục lỗi của ngày hôm nay :
+    1 đã khác phục (cho kiểu dữ liệu rõ ràng không dùng biến cục bộ)
+    2 đã khắc phục (đã tách biệt nghiệp vụ,tính toán logic với validate,checking,....)
+    3 chưa kp
+    4 đã hiểu và khắc phục ( middlewares là 1 cánh cổng xác thực hoặc
+     trong thực tế là 1 hàm xử lý trung gian,
+     thường là những thao tác thêm dữ liệu, biến đổi, ghi log, xác thực...
+      được sử dụng để tránh việc lập lại code )

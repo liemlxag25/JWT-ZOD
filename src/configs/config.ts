@@ -12,8 +12,7 @@ const dev = {
     host: process.env.DEV_DB_HOST || 'localhost',
     port: process.env.DEV_DB_PORT || 27017,
     name: process.env.DEV_DB_NAME || 'dev_db',
-  },
-  // Trong config.ts (chỉ phần jwt)
+  },  
   jwt: {
     secret: process.env.DEV_JWT_SECRET || 'dev_fallback_secret_key_12345',
     expiresIn: process.env.DEV_JWT_EXPIRES_IN || '7 days',
@@ -30,7 +29,6 @@ const pro = {
     port: process.env.PRO_DB_PORT || 27017,
     name: process.env.PRO_DB_NAME || 'pro_db',
   },
-  // Trong config.ts (chỉ phần jwt)
   jwt: {
     secret: process.env.PRO_JWT_SECRET || 'dev_fallback_secret_key_12345',
     expiresIn: process.env.PRO_JWT_EXPIRES_IN || '5h',
