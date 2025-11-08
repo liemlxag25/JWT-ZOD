@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from "express";
 import { nhanVienCreateSchema, nhanVienUpdateSchema } from "../validations/nhanvien.validation";
 import { ZodError } from "zod";
 
-// Validate create employee
 export const validateNhanVienCreate = (req: Request, res: Response, next: NextFunction) => {
   try {
     req.body = nhanVienCreateSchema.parse({
@@ -21,18 +20,17 @@ export const validateNhanVienCreate = (req: Request, res: Response, next: NextFu
     } else if (error instanceof Error) {
       messages = [error.message];
     } else {
-      messages = ["Lỗi không xác định"];
+      messages = ["ERROR UNKNOWN"];
     }
 
     return res.status(400).render("nhanvien/add", {
-      title: "Thêm nhân viên",
+      title: "Add New Employee",
       errors: messages,
-      user: (req as any).user,
+      user: req.user,
     });
   }
 };
 
-// Validate update employee
 export const validateNhanVienUpdate = (req: Request, res: Response, next: NextFunction) => {
   try {
     req.body = nhanVienUpdateSchema.parse({
@@ -51,7 +49,7 @@ export const validateNhanVienUpdate = (req: Request, res: Response, next: NextFu
     } else if (error instanceof Error) {
       messages = [error.message];
     } else {
-      messages = ["Lỗi không xác định"];
+      messages = ["ERROR UNKNOWN"];
     }
 
     const nhanvien = {
@@ -60,9 +58,9 @@ export const validateNhanVienUpdate = (req: Request, res: Response, next: NextFu
     };
 
     return res.status(400).render("nhanvien/edit", {
-      title: "Chỉnh sửa nhân viên",
+      title: "Edit Employee",
       errors: messages,
-      user: (req as any).user,
+      user: req.user,
       nhanvien,
     });
   }

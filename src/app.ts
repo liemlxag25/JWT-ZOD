@@ -3,6 +3,7 @@ import path from "path";
 import cookieParser from "cookie-parser";
 import viewEngineConfig from "./configs/viewEngine";
 import router from "./routes/web";
+import { globalErrorHandler } from "./middlewares/error.middleware";
 
 const app = express();
 
@@ -21,5 +22,7 @@ const staticDir =
 app.use(express.static(staticDir));
 
 app.use(router);
+
+app.use(globalErrorHandler);
 
 export default app;

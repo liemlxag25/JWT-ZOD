@@ -1,3 +1,4 @@
+// src/controllers/nhanvien.controller.ts
 import { Request, Response } from "express";
 import {
   getAllNhanVien,
@@ -6,37 +7,39 @@ import {
   updateNhanVien,
   deleteNhanVien,
 } from "../services/nhanvien.service";
+import { catchAsync } from "../utils/catchAsync";
+import { AppError } from "../utils/appError";
 
-export const listNhanVien = async (req: Request, res: Response) => {
-  const user = (req as any).user;
+export const listNhanVien = catchAsync(async (req: Request, res: Response) => {
+  const user = req.user;
   const nhanviens = await getAllNhanVien();
   res.render("nhanvien/list", { title: "Employee List", user, nhanviens });
-};
+});
 
 export const getAddNhanVien = (req: Request, res: Response) => {
-  const user = (req as any).user;
+  const user = req.user;
   res.render("nhanvien/add", { title: "Add Employee", user });
 };
 
-export const postAddNhanVien = async (req: Request, res: Response) => {
+export const postAddNhanVien = catchAsync(async (req: Request, res: Response) => {
   await createNhanVien(req.body);
   res.redirect("/nhanvien");
-};
+});
 
-export const getEditNhanVien = async (req: Request, res: Response) => {
-  const user = (req as any).user;
+export const getEditNhanVien = catchAsync(async (req: Request, res: Response) => {
+  const user = req.user;
   const nhanvien = await getNhanVienById(req.params.id);
-  if (!nhanvien) return res.redirect("/nhanvien");
-  res.render("nhanvien/edit", { title: "Edit Employee", user, nhanvien });
-};
+  if (!nhanvien) throw new AppError("Employee doesn't exist", 404);
+  res.render("nhanvien/edit", { title: "Edit employee", user, nhanvien });
+});
 
-
-export const postEditNhanVien = async (req: Request, res: Response) => {
-  await updateNhanVien(req.params.id, req.body);
+export const postEditNhanVien = catchAsync(async (req: Request, res: Response) => {
+  const updated = await updateNhanVien(req.params.id, req.body);
+  if (!updated) throw new AppError("Update failed", 400);
   res.redirect("/nhanvien");
-};
+});
 
-export const deleteNhanVienById = async (req: Request, res: Response) => {
+export const deleteNhanVienById = catchAsync(async (req: Request, res: Response) => {
   await deleteNhanVien(req.params.id);
   res.redirect("/nhanvien");
-};
+});

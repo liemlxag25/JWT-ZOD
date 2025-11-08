@@ -6,7 +6,7 @@ Sai lầm khi viết code:
  
  khác phục lỗi của ngày hôm nay :
     1 đã khác phục (cho kiểu dữ liệu rõ ràng không dùng biến cục bộ)
-    2 đã khắc phục (đã tách biệt nghiệp vụ,tính toán logic với validate,checking,....)
+    2 đã khắc phục (đã tách biệt nghiệp vụ,tính toán logic với validate,checking,.... của middlewares)
     3 chưa kp
     4 đã hiểu và khắc phục ( middlewares là 1 cánh cổng xác thực hoặc
      trong thực tế là 1 hàm xử lý trung gian,

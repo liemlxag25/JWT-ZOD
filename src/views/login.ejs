@@ -1,6 +1,6 @@
 <div class="container mt-5" style="max-width: 400px;">
   <h3 class="text-center mb-4">Đăng nhập</h3>
-  <% if (typeof error !== 'undefined') { %>
+  <% if (locals.error) { %>
     <div class="alert alert-danger"><%= error %></div>
   <% } %>
   <form method="POST" action="/login">

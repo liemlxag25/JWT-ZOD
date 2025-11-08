@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { verifyToken } from "../utils/jwt";
 import { loginSchema, registerSchema } from "../validations/auth.validation";
+import { catchAsync } from "../utils/catchAsync";
 
 export const requireAuth = (req: Request, res: Response, next: NextFunction) => {
   const token = req.cookies?.token;
@@ -9,7 +10,7 @@ export const requireAuth = (req: Request, res: Response, next: NextFunction) => 
   const decoded = verifyToken(token);
   if (!decoded) return res.redirect("/login");
 
-  (req as any).user = decoded;
+  req.user = decoded;
   next();
 };
 
@@ -26,30 +27,21 @@ export const checkLogin = (req: Request, res: Response, next: NextFunction) => {
     return res.redirect("/login");
   }
 
-  (req as any).user = decoded;
+  req.user = decoded;
   next();
 };
-export const validateRegister = (req: Request, res: Response, next: NextFunction) => {
-  try {
+
+export const validateRegister = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
     req.body = registerSchema.parse(req.body);
     next();
-  } catch (error: any) {
-    return res.status(400).render("register", {
-      title: "Register",
-      error: error.message,
-    });
   }
-};
+);
 
-export const validateLogin = (req: Request, res: Response, next: NextFunction) => {
-  try {
+export const validateLogin = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
     req.body = loginSchema.parse(req.body);
     next();
-  } catch (error: any) {
-    return res.status(400).render("login", {
-      title: "Login",
-      error: error.message,
-    });
   }
-};
+);
 
