@@ -2,6 +2,12 @@
   <div class="row justify-content-center">
     <div class="col-md-4">
       <h3 class="text-center mb-4">Đăng ký</h3>
+      <% if (typeof error !== 'undefined' && error.length > 0) { %>
+      <div class="alert alert-danger">
+        <strong>⚠️ Error : </strong>      
+        <%= error %>
+      </div>
+    <% } %>
       <form method="POST" action="/register">
         <div class="mb-3">
           <label for="username" class="form-label">Tên đăng nhập</label>
@@ -9,7 +15,11 @@
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">Mật khẩu</label>
-          <input type="password" class="form-control" autocomplete="new-password" name="password" required />
+          <input type="password" class="form-control" autocomplete="password" name="password" required />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Xác nhận mật khẩu</label>
+          <input type="password" class="form-control" autocomplete="password" name="confirmPassword" required />
         </div>
         <button class="btn btn-success w-100" type="submit">Đăng ký</button>
       </form>

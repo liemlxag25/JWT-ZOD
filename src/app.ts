@@ -3,7 +3,8 @@ import path from "path";
 import cookieParser from "cookie-parser";
 import viewEngineConfig from "./configs/viewEngine";
 import router from "./routes/web";
-import { globalErrorHandler } from "./middlewares/error.middleware";
+import { errorHandler } from "./middlewares/error.middleware";
+
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(express.static(staticDir));
 
 app.use(router);
 
-app.use(globalErrorHandler);
+app.use(errorHandler);
+
 
 export default app;

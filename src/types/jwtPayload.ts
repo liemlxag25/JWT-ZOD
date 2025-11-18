@@ -1,6 +1,4 @@
-// src/types/jwtPayload.ts
 export interface JwtUserPayload {
-  id: string;
-  username: string;
+  sub: string;
   role?: string;
 }

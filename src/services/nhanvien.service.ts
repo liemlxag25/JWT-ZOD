@@ -1,5 +1,5 @@
 import NhanVien, { INhanVien } from "../models/nhanvien.model";
-import { AppError } from "../utils/appError";
+import { AppError } from "../utils/AppError";
 
 export const getAllNhanVien = async (): Promise<INhanVien[]> => {
   return await NhanVien.find().sort({ createdAt: -1 });

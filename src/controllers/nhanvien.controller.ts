@@ -8,18 +8,20 @@ import {
   deleteNhanVien,
 } from "../services/nhanvien.service";
 import { catchAsync } from "../utils/catchAsync";
-import { AppError } from "../utils/appError";
+import { AppError } from "../utils/AppError";
 
-export const listNhanVien = catchAsync(async (req: Request, res: Response) => {
+
+export const listNhanVien =  (req: Request, res: Response) => {
   const user = req.user;
-  const nhanviens = await getAllNhanVien();
+  const nhanviens =  getAllNhanVien();
   res.render("nhanvien/list", { title: "Employee List", user, nhanviens });
-});
+};
 
 export const getAddNhanVien = (req: Request, res: Response) => {
   const user = req.user;
   res.render("nhanvien/add", { title: "Add Employee", user });
 };
+
 
 export const postAddNhanVien = catchAsync(async (req: Request, res: Response) => {
   await createNhanVien(req.body);
@@ -39,7 +41,7 @@ export const postEditNhanVien = catchAsync(async (req: Request, res: Response) =
   res.redirect("/nhanvien");
 });
 
-export const deleteNhanVienById = catchAsync(async (req: Request, res: Response) => {
+export const deleteNhanVienById = async (req: Request, res: Response) => {
   await deleteNhanVien(req.params.id);
   res.redirect("/nhanvien");
-});
+};
